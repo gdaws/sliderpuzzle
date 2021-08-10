@@ -1,8 +1,9 @@
 import { useReducer } from 'react';
-import './App.css';
-import { SlidingTilesPuzzle } from '../../core/puzzle';
+import { incrementalScramble } from '../../core/scamble';
+import { sleep } from '../../utils/timer';
 import { slide } from '../actions';
 import reducer, {initState} from '../reducer';
+import './App.css';
 import PuzzleGUI from './Puzzle';
 
 function App() {
@@ -13,8 +14,17 @@ function App() {
     dispatch(slide(index));
   };
 
+  const scramble = async () => {
+    for await (const target of incrementalScramble(state.board)) {
+      console.log(target);
+      dispatch(slide(target));
+      await sleep(180);
+    }
+  };
+
   return (
     <div className="App">
+      <button type="button" onClick={scramble}>Scramble</button>
       <PuzzleGUI board={state.board} onSlide={handleSlideRequest} />
     </div>
   );

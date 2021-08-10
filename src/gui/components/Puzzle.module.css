@@ -1,10 +1,13 @@
+:global(:root) {
+  --board-size: 75vmin;
+}
 
 .board {
   position: fixed;
   left: calc(50vw - min(75vw, 75vh)/2);
   top: calc(50vh - min(75vw, 75vh)/2);
-  width: min(75vw, 75vh);
-  height: min(75vw, 75vh);
+  width: var(--board-size);
+  height: var(--board-size);
   background-color: rgba(0, 0, 0, 0.08);
   overflow: hidden;
   font-size: 2vh;
@@ -15,7 +18,11 @@
   position: absolute;
   opacity: 1;
   background-color: mediumaquamarine;
-  transition: top 0.25s, left 0.25s, right 0.25s, bottom 0.25s;
+  background-image: url(../assets/texture1.jpg);
+  background-repeat: no-repeat;
+  background-size: var(--board-size) var(--board-size);
+  background-position: -36vh 0;
+  transition: top 0.2s, left 0.2s;
   color: rgba(0, 0, 0, 0.9);
   text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.7);
   border-top: 0.2vh solid rgba(255, 255, 255, 0.7);
