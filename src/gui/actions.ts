@@ -1,9 +1,10 @@
 
-export type Actions = InitAction | SlideAction | ShowTileNumbersAction;
+export type Actions = InitAction | SlideAction | ShowTileNumbersAction | ShowReferenceImageAction;
 
 export const ACTION_INIT = 'init';
 export const ACTION_SLIDE = 'slide';
 export const ACTION_SHOW_TILE_NUMBERS = 'showTileNumbers';
+export const ACTION_SHOW_REFERENCE_IMAGE = 'showReferenceImage';
 
 export interface InitAction {
   type: typeof ACTION_INIT,
@@ -25,3 +26,11 @@ export interface ShowTileNumbersAction {
 };
 
 export const showTileNumbers = (visible: boolean): ShowTileNumbersAction => ({type: ACTION_SHOW_TILE_NUMBERS, visible});
+
+export interface ShowReferenceImageAction {
+  type: typeof ACTION_SHOW_REFERENCE_IMAGE;
+  visible: boolean;
+};
+
+export const showReferenceImage = (visible: boolean): ShowReferenceImageAction => ({type: ACTION_SHOW_REFERENCE_IMAGE, visible});
+

@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import { incrementalScramble } from '../../core/scamble';
 import { sleep } from '../../utils/timer';
-import { slide, showTileNumbers } from '../actions';
+import { slide, showTileNumbers, showReferenceImage } from '../actions';
 import reducer, {initState} from '../reducer';
 import './App.css';
 import PuzzleGUI from './Puzzle';
@@ -26,14 +26,19 @@ function App() {
     dispatch(showTileNumbers(!state.tileNumbersVisible));
   };
 
+  const toggleReferenceImageVisibility = () => {
+    dispatch(showReferenceImage(!state.referenceImageVisible));
+  };
+
   return (
     <div className="App">
       <button type="button" onClick={scramble}>Scramble</button>
       <label><input type="checkbox" value={1} checked={state.tileNumbersVisible} onClick={toggleTileNumberVisibility} /> Show numbers</label>
+      <label><input type="checkbox" value={1} checked={state.referenceImageVisible} onClick={toggleReferenceImageVisibility} /> Show Reference Image</label>
       <PuzzleGUI 
         board={state.board} 
         tileNumbersVisible={state.tileNumbersVisible}
-        referenceVisible={true}
+        referenceVisible={state.referenceImageVisible}
         onSlide={handleSlideRequest} />
     </div>
   );
