@@ -32,7 +32,8 @@ function Tile(props: TileProps) {
     top: (y / size * 100) + '%',
     width: (1/size * 100) + '%',
     height: (1/size * 100) + '%',
-    backgroundPosition: `calc(${- 1 * (1/size) * vx} * var(${props.cssBoardSize ? props.cssBoardSize : "--board-size"})) calc(${-1 * (1/size) * vy} * var(${props.cssBoardSize ? props.cssBoardSize : "--board-size"}))`
+    backgroundSize: `${100 * size}% ${100 * size}%`,
+    backgroundPosition: `${vx/size * (1/(1 - 1/size)) * 100}% ${vy/size * (1/(1 - 1/size)) *  100}%`
   };
 
   const handleClick = () => {
@@ -70,11 +71,11 @@ export default function Puzzle(props: Props) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
+      {referenceBoard}
       <div className={styles.board}>
         {sort(props.board).map((i, v) => <Tile value={v} position={i} size={size} onSlide={props.onSlide} tileNumbersVisible={props.tileNumbersVisible} />)}
       </div>
-      {referenceBoard}
     </div>
   );
 }

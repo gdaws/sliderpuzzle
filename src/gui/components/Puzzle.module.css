@@ -1,12 +1,18 @@
 :global(:root) {
   --board-size: 75vmin;
-  --refboard-size: 25vmin;
+  --refboard-size: 75vmin;
 }
 
-.board {
-  position: fixed;
-  left: calc(50vw - min(75vw, 75vh)/2);
-  top: calc(50vh - min(75vw, 75vh)/2);
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.board, .refBoard {
+  position: relative;
+  flex: 0 0 auto;
+  margin: 1em;
   width: var(--board-size);
   height: var(--board-size);
   background-color: rgba(0, 0, 0, 0.08);
@@ -21,10 +27,10 @@
 .board .tile {
   position: absolute;
   opacity: 1;
-  background-color: mediumaquamarine;
+  background-color: black;
   background-image: url(../assets/texture2.jpg);
   background-repeat: no-repeat;
-  background-size: var(--board-size) var(--board-size);
+  background-size: 400% 400%;
   transition: top 0.2s, left 0.2s;
   border-top: 0.2vh solid rgba(255, 255, 255, 0.7);
   border-left: 0.2vw solid rgba(255, 255, 255, 0.7);
@@ -42,26 +48,14 @@
 }
 
 .refBoard {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: calc(50vh - min(75vw, 75vh)/2);
-  width: var(--refboard-size);
-  height: var(--refboard-size);
-  background-color: rgba(0, 0, 0, 0.08);
   filter: grayscale(100%);
-  overflow: hidden;
-  font-size: 2vh;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.9);
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.7);
 }
 
 .refBoard .tile {
   position: absolute;
   opacity: 1;
   background-color: mediumaquamarine;
-  background-image: url(../assets/texture2.jpg);
+  background-image: url(../assets/texture1.jpg);
   background-repeat: no-repeat;
   background-size: var(--refboard-size) var(--refboard-size);
   transition: top 0.2s, left 0.2s;
