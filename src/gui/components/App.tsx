@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { incrementalScramble } from '../../core/scamble';
+import { incrementalScramble } from '../../core/scramble';
 import { sleep } from '../../utils/timer';
 import { slide, showTileNumbers, showReferenceImage } from '../actions';
 import reducer, {initState} from '../reducer';
@@ -18,7 +18,7 @@ function App() {
     for await (const target of incrementalScramble(state.board)) {
       console.log(target);
       dispatch(slide(target));
-      await sleep(180);
+      await sleep(18);
     }
   };
 
