@@ -1,29 +1,25 @@
-import { SlidablePuzzle, Board, SlidingTilesPuzzle } from '../core/puzzle';
-import { Action, ACTION_INIT, ACTION_SLIDE, ACTION_SHOW_TILE_NUMBERS, ACTION_SHOW_REFERENCE_IMAGE } from './actions';
+import { Board, initBoard, slide } from '../core/puzzle';
 
-type InstanceId = number;
+import { 
+  Action, 
+  ACTION_INIT, 
+  ACTION_SLIDE, 
+  ACTION_SHOW_TILE_NUMBERS, 
+  ACTION_SHOW_REFERENCE_IMAGE 
+} from './actions';
 
 interface State {
-  id: InstanceId;
   board: Board;
   tileNumbersVisible: boolean;
   referenceImageVisible: boolean;
 };
 
-const instances = new Map<InstanceId, SlidablePuzzle>();
-let nextInstanceId: InstanceId = 0;
-
 export function initState(size: number): State {
 
-  const id = nextInstanceId++;
-
-  const puzzle = new SlidingTilesPuzzle(size);
-
-  instances.set(id, puzzle);
+  const board = initBoard(size);
 
   return {
-    id,
-    board: puzzle.board(),
+    board,
     tileNumbersVisible: true,
     referenceImageVisible: false
   };
@@ -42,20 +38,14 @@ export default function reducer(state: State, action: Action) {
       return {...state, referenceImageVisible: action.visible};
   }
 
-  const puzzle = instances.get(state.id);
-
-  if (!puzzle) {
-    return state;
-  }
-
   switch (action.type) {
     case ACTION_SLIDE: {
-      puzzle.slide(action.index);
+      slide(state.board, action.index);
+      break;
     }
   }
 
   return {
-    ...state,
-    board: puzzle.board()
+    ...state
   };
 }

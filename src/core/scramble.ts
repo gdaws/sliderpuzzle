@@ -1,11 +1,11 @@
-import { Board } from './puzzle';
+import { Board, EMPTY_SPACE } from './puzzle';
 import { pickRandom } from '../utils/random';
 
 export async function* incrementalScramble(board: Board) {
 
-  const [size, values] = board;
+  const size = board.size;
 
-  let empty = values.indexOf(0);
+  let empty = board.values.indexOf(EMPTY_SPACE);
 
   if (-1 === empty) {
     return;

@@ -58,7 +58,7 @@ interface Props {
 
 export default function Puzzle(props: Props) {
 
-  const [size] = props.board;
+  const { size } = props.board;
 
   let referenceBoard: ReactNode | undefined;
 
@@ -82,7 +82,7 @@ export default function Puzzle(props: Props) {
 
 function sort(board: Board): number[] {
 
-  const [size, values] = board;
+  const { size, values } = board;
   const sorted = new Array(size * size);
 
   for (let i = 0; i < values.length; i++) {
