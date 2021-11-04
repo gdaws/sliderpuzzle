@@ -4,7 +4,7 @@ import { sleep } from '../../utils/timer';
 import { slide, showNumbers, showReferenceImage } from '../actions';
 import reducer, {initState} from '../reducer';
 import './App.css';
-import PuzzleGUI from './Puzzle';
+import Puzzle from './Puzzle';
 
 function App() {
 
@@ -35,10 +35,9 @@ function App() {
       <button type="button" onClick={scramble}>Scramble</button>
       <label><input type="checkbox" value={1} checked={state.numbersVisible} onClick={toggleTileNumbersVisibility} /> Show numbers</label>
       <label><input type="checkbox" value={1} checked={state.referenceImageVisible} onClick={toggleReferenceImageVisibility} /> Show Reference Image</label>
-      <PuzzleGUI 
-        board={state.board} 
+      <Puzzle
+        board={state.board}
         numbersVisible={state.numbersVisible}
-        referenceVisible={state.referenceImageVisible}
         onSlide={handleSlideRequest} />
     </div>
   );

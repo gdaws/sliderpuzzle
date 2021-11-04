@@ -49,30 +49,18 @@ function Tile(props: TileProps) {
   );
 }
 
-interface Props {
+interface PuzzleProps {
   board: Board;
-  onSlide: (index: number) => void;
-  referenceVisible: boolean;
   numbersVisible: boolean;
+  onSlide: (index: number) => void;
 };
 
-export default function Puzzle(props: Props) {
+export default function Puzzle(props: PuzzleProps) {
 
   const { size } = props.board;
 
-  let referenceBoard: ReactNode | undefined;
-
-  if (props.referenceVisible) {
-    referenceBoard = (
-      <div className={styles.refBoard}>
-        {series(size * size).map(v => <Tile value={v} position={v - 1} size={size} numbersVisible={false} cssBoardSize="--refboard-size" />)}
-      </div>
-    );
-  }
-
   return (
     <div className={styles.container}>
-      {referenceBoard}
       <div className={styles.board}>
         {sort(props.board).map((i, v) => <Tile value={v} position={i} size={size} onSlide={props.onSlide} numbersVisible={props.numbersVisible} />)}
       </div>
