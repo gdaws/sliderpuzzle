@@ -1,5 +1,5 @@
 
-export type Actions = InitAction | SlideAction | ShowTileNumbersAction | ShowReferenceImageAction;
+export type Action = InitAction | SlideAction | ShowTileNumbersAction | ShowReferenceImageAction;
 
 export const ACTION_INIT = 'init';
 export const ACTION_SLIDE = 'slide';
@@ -33,4 +33,3 @@ export interface ShowReferenceImageAction {
 };
 
 export const showReferenceImage = (visible: boolean): ShowReferenceImageAction => ({type: ACTION_SHOW_REFERENCE_IMAGE, visible});
-

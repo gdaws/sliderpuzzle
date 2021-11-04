@@ -1,5 +1,5 @@
 import { SlidablePuzzle, Board, SlidingTilesPuzzle } from '../core/puzzle';
-import { Actions, ACTION_INIT, ACTION_SLIDE, ACTION_SHOW_TILE_NUMBERS, ACTION_SHOW_REFERENCE_IMAGE } from './actions';
+import { Action, ACTION_INIT, ACTION_SLIDE, ACTION_SHOW_TILE_NUMBERS, ACTION_SHOW_REFERENCE_IMAGE } from './actions';
 
 type InstanceId = number;
 
@@ -25,11 +25,11 @@ export function initState(size: number): State {
     id,
     board: puzzle.board(),
     tileNumbersVisible: true,
-    referenceImageVisible: true
+    referenceImageVisible: false
   };
 };
 
-export default function reducer(state: State, action: Actions) {
+export default function reducer(state: State, action: Action) {
 
   if (action.type === ACTION_INIT) {
     return initState(action.size);
