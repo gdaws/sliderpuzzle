@@ -27,25 +27,15 @@ export function initState(size: number): State {
 
 export default function reducer(state: State, action: Action) {
 
-  if (action.type === ACTION_INIT) {
-    return initState(action.size);
-  }
-
   switch (action.type) {
+    case ACTION_INIT:
+      return {...state, board: initBoard(action.size)};
     case ACTION_SHOW_NUMBERS: 
       return {...state, numbersVisible: action.visible};
     case ACTION_SHOW_REFERENCE_IMAGE:
       return {...state, referenceImageVisible: action.visible};
-  }
-
-  switch (action.type) {
-    case ACTION_SLIDE: {
+    case ACTION_SLIDE:
       slide(state.board, action.index);
-      break;
-    }
+      return {...state};
   }
-
-  return {
-    ...state
-  };
 }
