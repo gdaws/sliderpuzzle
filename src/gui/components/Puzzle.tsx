@@ -7,7 +7,7 @@ interface TileProps {
   value: number;
   size: number;
   onSlide?: (position: number) => void;
-  tileNumbersVisible: boolean;
+  numbersVisible: boolean;
   cssBoardSize?: string;
 };
 
@@ -44,7 +44,7 @@ function Tile(props: TileProps) {
 
   return (
     <div key={v} className={styles.tile} style={style} onMouseDown={handleClick}>
-      {props.tileNumbersVisible ? <span className={styles.number}>{v}</span> : null}
+      {props.numbersVisible ? <span className={styles.number}>{v}</span> : null}
     </div>
   );
 }
@@ -53,7 +53,7 @@ interface Props {
   board: Board;
   onSlide: (index: number) => void;
   referenceVisible: boolean;
-  tileNumbersVisible: boolean;
+  numbersVisible: boolean;
 };
 
 export default function Puzzle(props: Props) {
@@ -65,7 +65,7 @@ export default function Puzzle(props: Props) {
   if (props.referenceVisible) {
     referenceBoard = (
       <div className={styles.refBoard}>
-        {series(size * size).map(v => <Tile value={v} position={v - 1} size={size} tileNumbersVisible={false} cssBoardSize="--refboard-size" />)}
+        {series(size * size).map(v => <Tile value={v} position={v - 1} size={size} numbersVisible={false} cssBoardSize="--refboard-size" />)}
       </div>
     );
   }
@@ -74,7 +74,7 @@ export default function Puzzle(props: Props) {
     <div className={styles.container}>
       {referenceBoard}
       <div className={styles.board}>
-        {sort(props.board).map((i, v) => <Tile value={v} position={i} size={size} onSlide={props.onSlide} tileNumbersVisible={props.tileNumbersVisible} />)}
+        {sort(props.board).map((i, v) => <Tile value={v} position={i} size={size} onSlide={props.onSlide} numbersVisible={props.numbersVisible} />)}
       </div>
     </div>
   );

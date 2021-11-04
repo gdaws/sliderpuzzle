@@ -4,13 +4,13 @@ import {
   Action, 
   ACTION_INIT, 
   ACTION_SLIDE, 
-  ACTION_SHOW_TILE_NUMBERS, 
+  ACTION_SHOW_NUMBERS, 
   ACTION_SHOW_REFERENCE_IMAGE 
 } from './actions';
 
 interface State {
   board: Board;
-  tileNumbersVisible: boolean;
+  numbersVisible: boolean;
   referenceImageVisible: boolean;
 };
 
@@ -20,7 +20,7 @@ export function initState(size: number): State {
 
   return {
     board,
-    tileNumbersVisible: true,
+    numbersVisible: true,
     referenceImageVisible: false
   };
 };
@@ -32,8 +32,8 @@ export default function reducer(state: State, action: Action) {
   }
 
   switch (action.type) {
-    case ACTION_SHOW_TILE_NUMBERS: 
-      return {...state, tileNumbersVisible: action.visible};
+    case ACTION_SHOW_NUMBERS: 
+      return {...state, numbersVisible: action.visible};
     case ACTION_SHOW_REFERENCE_IMAGE:
       return {...state, referenceImageVisible: action.visible};
   }
