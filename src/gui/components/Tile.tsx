@@ -1,14 +1,14 @@
-import { ReactNode, Fragment } from 'react';
-import { Board, EMPTY_SPACE } from '../../core/puzzle';
+import { Fragment } from 'react';
+import { EMPTY_SPACE } from '../../core/puzzle';
 import styles from './Puzzle.module.css';
 
 export interface TileProps {
   position: number;
   value: number;
   size: number;
-  onSlide?: (position: number) => void;
   numbersVisible: boolean;
-  cssBoardSize?: string;
+  backgroundImage: string;
+  onSlide?: (position: number) => void;
 };
 
 export function Tile(props: TileProps) {
@@ -32,6 +32,7 @@ export function Tile(props: TileProps) {
     top: (y / size * 100) + '%',
     width: (1/size * 100) + '%',
     height: (1/size * 100) + '%',
+    backgroundImage: `url(${props.backgroundImage})`,
     backgroundSize: `${100 * size}% ${100 * size}%`,
     backgroundPosition: `${vx/size * (1/(1 - 1/size)) * 100}% ${vy/size * (1/(1 - 1/size)) *  100}%`
   };

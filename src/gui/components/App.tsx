@@ -3,6 +3,7 @@ import { incrementalScramble } from '../../core/scramble';
 import { sleep } from '../../utils/timer';
 import { slide, showNumbers, showReferenceImage } from '../actions';
 import reducer, {initState} from '../reducer';
+import texture2 from '../assets/texture2.jpg';
 import './App.css';
 import Puzzle from './Puzzle';
 
@@ -38,6 +39,7 @@ function App() {
       <Puzzle
         board={state.board}
         numbersVisible={state.numbersVisible}
+        backgroundImage={texture2}
         onSlide={handleSlideRequest} />
     </div>
   );

@@ -1,11 +1,11 @@
-import { ReactNode, Fragment } from 'react';
-import { Board, EMPTY_SPACE } from '../../core/puzzle';
+import { Board } from '../../core/puzzle';
 import { Tile } from './Tile';
 import styles from './Puzzle.module.css';
 
 interface PuzzleProps {
   board: Board;
   numbersVisible: boolean;
+  backgroundImage: string;
   onSlide: (index: number) => void;
 };
 
@@ -16,7 +16,13 @@ export default function Puzzle(props: PuzzleProps) {
   return (
     <div className={styles.container}>
       <div className={styles.board}>
-        {sort(props.board).map((i, v) => <Tile value={v} position={i} size={size} onSlide={props.onSlide} numbersVisible={props.numbersVisible} />)}
+        {sort(props.board).map((i, v) => <Tile 
+          value={v} 
+          position={i} 
+          size={size} 
+          numbersVisible={props.numbersVisible}
+          backgroundImage={props.backgroundImage}
+          onSlide={props.onSlide} />)}
       </div>
     </div>
   );
@@ -32,12 +38,4 @@ function sort(board: Board): number[] {
   }
 
   return sorted;
-}
-
-function series(size: number): number[] {
-  const values = new Array(size);
-  for (let i = 0; i < size; i++) {
-    values[i] = i + 1;
-  }
-  return values;
 }
