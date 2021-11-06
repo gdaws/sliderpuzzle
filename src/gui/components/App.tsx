@@ -4,9 +4,9 @@ import { initBoard } from '../../core/puzzle';
 import { sleep } from '../../utils/timer';
 import { slide, showNumbers, showReferenceImage } from '../actions';
 import reducer, {initState} from '../reducer';
-import texture2 from '../assets/texture1.jpg';
-import './App.css';
+import texture2 from '../assets/texture2.jpg';
 import Puzzle from './Puzzle';
+import './App.css';
 
 function App() {
 
@@ -37,7 +37,7 @@ function App() {
       <label><input type="checkbox" value={1} checked={state.ui.numbersVisible} onClick={toggleTileNumbersVisibility} /> Show numbers</label>
       <label><input type="checkbox" value={1} checked={state.ui.referenceImageVisible} onClick={toggleReferenceImageVisibility} /> Show Reference Image</label>
       <div className="AppPuzzleContainer">
-        {state.ui.referenceImageVisible ? <Puzzle board={initBoard(state.board.size)} numbersVisible={false} backgroundImage={state.ui.boardImage} onSlide={() => {}} /> : null}
+        {state.ui.referenceImageVisible ? <Puzzle className="AppRefBoard" board={initBoard(state.board.size)} numbersVisible={false} backgroundImage={state.ui.boardImage} onSlide={() => {}} /> : null}
         <Puzzle
           board={state.board}
           numbersVisible={state.ui.numbersVisible}

@@ -6,6 +6,7 @@ interface PuzzleProps {
   board: Board;
   numbersVisible: boolean;
   backgroundImage: string;
+  className?: string;
   onSlide: (index: number) => void;
 };
 
@@ -14,7 +15,7 @@ export default function Puzzle(props: PuzzleProps) {
   const { size } = props.board;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container + (props.className ? ' ' + props.className : '')}>
       <div className={styles.board}>
         {sort(props.board).map((i, v) => <Tile 
           value={v} 

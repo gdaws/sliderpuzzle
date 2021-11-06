@@ -4,6 +4,7 @@
 
 .AppPuzzleContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 1em;
 }
@@ -11,4 +12,10 @@
 .AppPuzzleContainer > * {
   width: 75vmin;
   height: 75vmin;
+  padding: 3vmin;
+}
+
+.AppRefBoard {
+  width: 30vmin;
+  height: 30vmin;
 }
