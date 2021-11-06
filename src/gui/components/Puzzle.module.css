@@ -1,70 +1,29 @@
-:global(:root) {
-  --board-size: 75vmin;
-  --refboard-size: 75vmin;
-}
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.board, .refBoard {
+.board {
   position: relative;
-  flex: 0 0 auto;
-  margin: 1em;
-  width: var(--board-size);
-  height: var(--board-size);
-  background-color: rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.08);
+  border: 0.5vw ridge #ccc;
+  border-radius: 0.5vw;
   font-size: 2vh;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.9);
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.7);
-  z-index: 2;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
 }
 
 .board .tile {
   position: absolute;
   opacity: 1;
-  background-color: black;
-
+  background-color:transparent;
   background-repeat: no-repeat;
   background-size: 400% 400%;
   transition: top 0.2s, left 0.2s;
-  border-top: 0.2vh solid rgba(255, 255, 255, 0.7);
-  border-left: 0.2vw solid rgba(255, 255, 255, 0.7);
-  border-right: 0.2vw solid rgba(0, 0, 0, 0.5);
-  border-bottom: 0.2vw solid rgba(0, 0, 0, 0.5);
+  border: 0.15vw outset rgba(200, 200, 200, 0.7);
   box-sizing: border-box;
   padding: 1%;
   text-align: left;
   user-select: none;
   cursor: pointer;
-}
-
-.board .tile .number {
-  display: block;
-}
-
-.refBoard {
-  filter: grayscale(100%);
-}
-
-.refBoard .tile {
-  position: absolute;
-  opacity: 1;
-  background-color: mediumaquamarine;
-  background-image: url(../assets/texture1.jpg);
-  background-repeat: no-repeat;
-  background-size: var(--refboard-size) var(--refboard-size);
-  transition: top 0.2s, left 0.2s;
-  border-top: 0.1vh solid rgba(255, 255, 255, 0.7);
-  border-left: 0.1vw solid rgba(255, 255, 255, 0.7);
-  border-right: 0.1vw solid rgba(0, 0, 0, 0.5);
-  border-bottom: 0.1vw solid rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
-  padding: 1%;
-  text-align: left;
-  user-select: none;
 }
