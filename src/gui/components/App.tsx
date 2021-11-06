@@ -33,10 +33,12 @@ function App() {
 
   return (
     <div className="App">
-      <button type="button" onClick={scramble}>Scramble</button>
-      <label><input type="checkbox" value={1} checked={state.ui.numbersVisible} onClick={toggleTileNumbersVisibility} /> Show numbers</label>
-      <label><input type="checkbox" value={1} checked={state.ui.referenceImageVisible} onClick={toggleReferenceImageVisibility} /> Show Reference Image</label>
-      <div className="AppPuzzleContainer">
+      <div className="AppMenu">
+        <button className="btn" type="button" onClick={scramble}>Scramble</button>
+        <label><input type="checkbox" value={1} checked={state.ui.numbersVisible} onClick={toggleTileNumbersVisibility} /> Show numbers</label>
+        <label><input type="checkbox" value={1} checked={state.ui.referenceImageVisible} onClick={toggleReferenceImageVisibility} /> Show Reference Image</label>
+      </div>
+      <div className="AppBody">
         {state.ui.referenceImageVisible ? <Puzzle className="AppRefBoard" board={initBoard(state.board.size)} numbersVisible={false} backgroundImage={state.ui.boardImage} onSlide={() => {}} /> : null}
         <Puzzle
           board={state.board}

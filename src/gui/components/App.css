@@ -2,14 +2,26 @@
   text-align: center;
 }
 
-.AppPuzzleContainer {
+.AppMenu {
+  position: sticky;
+  display: inline-block;
+  top: 1em;
+  z-index: 1;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1em);
+  border-radius: 0.35em;
+  box-shadow: 0.15em 0.15em 0.25em rgba(0, 0, 0, 0.15);
+  margin-bottom: 1em;
+}
+
+.AppBody {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 1em;
 }
 
-.AppPuzzleContainer > * {
+.AppBody > * {
   width: 75vmin;
   height: 75vmin;
   padding: 3vmin;
@@ -18,4 +30,18 @@
 .AppRefBoard {
   width: 30vmin;
   height: 30vmin;
+}
+
+.btn {
+  background-color: #0276FF;
+  font-weight: bold;
+  color: #fff;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.25);
 }
