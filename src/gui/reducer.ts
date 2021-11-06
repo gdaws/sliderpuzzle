@@ -8,20 +8,28 @@ import {
   ACTION_SHOW_REFERENCE_IMAGE 
 } from './actions';
 
-interface State {
-  board: Board;
+interface UiState {
   numbersVisible: boolean;
   referenceImageVisible: boolean;
+  boardImage: string;
 };
 
-export function initState(size: number): State {
+interface State {
+  board: Board;
+  ui: UiState;
+};
+
+export function initState(size: number, boardImage: string): State {
 
   const board = initBoard(size);
 
   return {
     board,
-    numbersVisible: true,
-    referenceImageVisible: false
+    ui: {
+      numbersVisible: true, 
+      referenceImageVisible: false,
+      boardImage
+    }
   };
 };
 
