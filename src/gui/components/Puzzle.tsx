@@ -18,6 +18,7 @@ export default function Puzzle(props: PuzzleProps) {
     <div className={styles.container + (props.className ? ' ' + props.className : '')}>
       <div className={styles.board}>
         {sort(props.board).map((i, v) => <Tile 
+          key={v}
           value={v} 
           position={i} 
           size={size} 
