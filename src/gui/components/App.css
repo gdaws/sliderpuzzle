@@ -4,15 +4,21 @@
 
 .AppMenu {
   position: sticky;
-  display: inline-block;
-  top: 1em;
+  display: flex;
+  top: 0em;
   z-index: 1;
   padding: 1em;
+  margin-bottom: 1em;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(1em);
-  border-radius: 0.35em;
-  box-shadow: 0.15em 0.15em 0.25em rgba(0, 0, 0, 0.15);
-  margin-bottom: 1em;
+  border-radius: 0em;
+  box-shadow: 0.15em 0.15em 0.25em rgba(0, 0, 0, 0.12);
+}
+
+.AppMenu > * {
+  margin-right: 1em;
 }
 
 .AppBody {
