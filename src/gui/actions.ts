@@ -16,9 +16,10 @@ export const init = (size: number): InitAction => ({type: ACTION_INIT, size});
 export interface SlideAction {
   type: typeof ACTION_SLIDE;
   index: number;
+  discountMove: boolean;
 };
 
-export const slide = (index: number): SlideAction => ({type: ACTION_SLIDE, index});
+export const slide = (index: number, discountMove: boolean = false): SlideAction => ({type: ACTION_SLIDE, index, discountMove});
 
 export interface ShowNumbersAction {
   type: typeof ACTION_SHOW_NUMBERS;

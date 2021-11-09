@@ -20,7 +20,7 @@ function App() {
 
   const scramble = async () => {
     for await (const target of incrementalScramble(state.board)) {
-      dispatch(slide(target));
+      dispatch(slide(target, true));
       await sleep(18);
     }
   };

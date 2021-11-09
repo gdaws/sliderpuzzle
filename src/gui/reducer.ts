@@ -47,7 +47,7 @@ export default function reducer(state: State, action: Action) {
     case ACTION_SLIDE:
       const board = cloneBoard(state.board);
       const moved = slide(board, action.index);
-      const moves = state.moves + (moved ? 1 : 0);
+      const moves = state.moves + (moved && !action.discountMove ? 1 : 0);
       return {...state, board, moves };
   }
 }
