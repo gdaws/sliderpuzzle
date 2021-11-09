@@ -1,3 +1,4 @@
+import { Stats } from 'fs';
 import { Board, initBoard, cloneBoard, slide } from '../core/puzzle';
 
 import { 
@@ -5,7 +6,8 @@ import {
   ACTION_INIT, 
   ACTION_SLIDE, 
   ACTION_SHOW_NUMBERS, 
-  ACTION_SHOW_REFERENCE_IMAGE 
+  ACTION_SHOW_REFERENCE_IMAGE,
+  ACTION_RESET_STATS
 } from './actions';
 
 interface UiState {
@@ -16,6 +18,7 @@ interface UiState {
 
 interface State {
   board: Board;
+  frozenStats: boolean;
   moves: number;
   ui: UiState;
 };
@@ -26,6 +29,7 @@ export function initState(size: number, boardImage: string): State {
 
   return {
     board,
+    frozenStats: false,
     moves: 0,
     ui: {
       numbersVisible: true, 
@@ -44,10 +48,15 @@ export default function reducer(state: State, action: Action) {
       return {...state, ui: {...state.ui, numbersVisible: action.visible}};
     case ACTION_SHOW_REFERENCE_IMAGE:
       return {...state, ui: {...state.ui, referenceImageVisible: action.visible}};
-    case ACTION_SLIDE:
+    case ACTION_SLIDE: {
       const board = cloneBoard(state.board);
       const moved = slide(board, action.index);
-      const moves = state.moves + (moved && !action.discountMove ? 1 : 0);
+      const moves = state.moves + (moved && !action.discountMove && !state.frozenStats ? 1 : 0);
       return {...state, board, moves };
+    }
+    case ACTION_RESET_STATS: {
+      const moves = action.reset ? 0 : state.moves;
+      return {...state, moves, frozenStats: action.freeze };
+    }
   }
 }

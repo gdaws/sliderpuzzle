@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import { incrementalScramble } from '../../core/scramble';
 import { initBoard } from '../../core/puzzle';
 import { sleep } from '../../utils/timer';
-import { slide, showNumbers, showReferenceImage } from '../actions';
+import { slide, showNumbers, showReferenceImage, resetStats } from '../actions';
 import reducer, {initState} from '../reducer';
 import texture2 from '../assets/texture2.jpg';
 import Puzzle from './Puzzle';
@@ -19,10 +19,15 @@ function App() {
   };
 
   const scramble = async () => {
+
+    dispatch(resetStats(true));
+
     for await (const target of incrementalScramble(state.board)) {
       dispatch(slide(target, true));
       await sleep(18);
     }
+
+    dispatch(resetStats(false));
   };
 
   const toggleTileNumbersVisibility = () => {
