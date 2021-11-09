@@ -1,4 +1,4 @@
-import { Board, initBoard, slide } from '../core/puzzle';
+import { Board, initBoard, cloneBoard, slide } from '../core/puzzle';
 
 import { 
   Action, 
@@ -16,6 +16,7 @@ interface UiState {
 
 interface State {
   board: Board;
+  moves: number;
   ui: UiState;
 };
 
@@ -25,6 +26,7 @@ export function initState(size: number, boardImage: string): State {
 
   return {
     board,
+    moves: 0,
     ui: {
       numbersVisible: true, 
       referenceImageVisible: false,
@@ -43,7 +45,9 @@ export default function reducer(state: State, action: Action) {
     case ACTION_SHOW_REFERENCE_IMAGE:
       return {...state, ui: {...state.ui, referenceImageVisible: action.visible}};
     case ACTION_SLIDE:
-      slide(state.board, action.index);
-      return {...state};
+      const board = cloneBoard(state.board);
+      const moved = slide(board, action.index);
+      const moves = state.moves + (moved ? 1 : 0);
+      return {...state, board, moves };
   }
 }

@@ -29,6 +29,10 @@ export function initBoard(size: number): Board {
   return board;
 }
 
+export function cloneBoard(board: Board): Board {
+  return {size: board.size, values: [...board.values]};
+}
+
 export function solved(board: Board): boolean {
 
   const n = board.size * board.size;
@@ -43,18 +47,18 @@ export function solved(board: Board): boolean {
   return true;
 }
 
-export function slide(board: Board, index: number): Board {
+export function slide(board: Board, index: number): boolean {
 
   const empty = findEmpty(board, index);
 
   if (empty === NO_EMPTY_SPACE) {
-    return board;
+    return false;
   }
 
   board.values[empty] = board.values[index];
   board.values[index] = 0;
 
-  return board;
+  return true;
 }
 
 function findEmpty(board: Board, index: number): number {
