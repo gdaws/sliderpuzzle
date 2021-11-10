@@ -1,4 +1,3 @@
-import { Stats } from 'fs';
 import { Board, initBoard, cloneBoard, slide } from '../core/puzzle';
 
 import { 
@@ -43,7 +42,11 @@ export default function reducer(state: State, action: Action) {
 
   switch (action.type) {
     case ACTION_INIT:
-      return {...state, board: initBoard(action.size)};
+      return {
+        ...state, 
+        board: action.board, 
+        moves: 0
+      };
     case ACTION_SHOW_NUMBERS: 
       return {...state, ui: {...state.ui, numbersVisible: action.visible}};
     case ACTION_SHOW_REFERENCE_IMAGE:

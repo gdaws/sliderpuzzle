@@ -1,4 +1,4 @@
-import { Board, EMPTY_SPACE } from './puzzle';
+import { Board, EMPTY_SPACE, cloneBoard } from './puzzle';
 import { pickRandom } from '../utils/random';
 
 export async function* incrementalScramble(board: Board) {
@@ -26,4 +26,25 @@ export async function* incrementalScramble(board: Board) {
 
     yield empty;
   }
+}
+
+export function shuffle(board: Board): Board {
+
+  const shuffled = cloneBoard(board);
+
+  const values = shuffled.values;
+
+  const n = board.size * board.size;
+
+  for (let i = 0; i < n; i++) {
+
+    const exchange = Math.floor(Math.random() * i);
+
+    const tmp = values[i];
+
+    values[i] = values[exchange];
+    values[exchange] = tmp;
+  }
+
+  return shuffled;
 }

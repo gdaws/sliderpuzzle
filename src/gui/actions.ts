@@ -1,4 +1,6 @@
 
+import { Board } from '../core/puzzle';
+
 export type Action = InitAction | SlideAction | ShowNumbersAction | ShowReferenceImageAction | ResetStatsAction;
 
 export const ACTION_INIT = 'init';
@@ -8,11 +10,11 @@ export const ACTION_SHOW_REFERENCE_IMAGE = 'showReferenceImage';
 export const ACTION_RESET_STATS = 'updateStats';
 
 export interface InitAction {
-  type: typeof ACTION_INIT,
-  size: number;
+  type: typeof ACTION_INIT;
+  board: Board;
 };
 
-export const init = (size: number): InitAction => ({type: ACTION_INIT, size});
+export const init = (board: Board): InitAction => ({type: ACTION_INIT, board});
 
 export interface SlideAction {
   type: typeof ACTION_SLIDE;
