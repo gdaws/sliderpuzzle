@@ -1,12 +1,12 @@
 
 import { Board } from '../core/puzzle';
+import { UiState } from './reducer';
 
-export type Action = InitAction | SlideAction | ShowNumbersAction | ShowReferenceImageAction | ResetStatsAction;
+export type Action = InitAction | SlideAction | SetUiConfigAction | ResetStatsAction;
 
 export const ACTION_INIT = 'init';
 export const ACTION_SLIDE = 'slide';
-export const ACTION_SHOW_NUMBERS = 'showNumbers';
-export const ACTION_SHOW_REFERENCE_IMAGE = 'showReferenceImage';
+export const ACTION_SET_UI_CONFIG = 'setUiConfig';
 export const ACTION_RESET_STATS = 'updateStats';
 
 export interface InitAction {
@@ -24,19 +24,12 @@ export interface SlideAction {
 
 export const slide = (index: number, discountMove: boolean = false): SlideAction => ({type: ACTION_SLIDE, index, discountMove});
 
-export interface ShowNumbersAction {
-  type: typeof ACTION_SHOW_NUMBERS;
-  visible: boolean;
+export interface SetUiConfigAction {
+  type: typeof ACTION_SET_UI_CONFIG;
+  values: UiState;
 };
 
-export const showNumbers = (visible: boolean): ShowNumbersAction => ({type: ACTION_SHOW_NUMBERS, visible});
-
-export interface ShowReferenceImageAction {
-  type: typeof ACTION_SHOW_REFERENCE_IMAGE;
-  visible: boolean;
-};
-
-export const showReferenceImage = (visible: boolean): ShowReferenceImageAction => ({type: ACTION_SHOW_REFERENCE_IMAGE, visible});
+export const setUiConfig = (values: UiState): SetUiConfigAction => ({type: ACTION_SET_UI_CONFIG, values});
 
 export interface ResetStatsAction {
   type: typeof ACTION_RESET_STATS;

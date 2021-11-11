@@ -4,12 +4,11 @@ import {
   Action, 
   ACTION_INIT, 
   ACTION_SLIDE, 
-  ACTION_SHOW_NUMBERS, 
-  ACTION_SHOW_REFERENCE_IMAGE,
+  ACTION_SET_UI_CONFIG,
   ACTION_RESET_STATS
 } from './actions';
 
-interface UiState {
+export interface UiState {
   numbersVisible: boolean;
   referenceImageVisible: boolean;
   boardImage: string;
@@ -53,10 +52,8 @@ export default function reducer(state: State, action: Action) {
         started: new Date(),
         finished: solved(action.board) ? new Date() : void 0
       };
-    case ACTION_SHOW_NUMBERS: 
-      return {...state, ui: {...state.ui, numbersVisible: action.visible}};
-    case ACTION_SHOW_REFERENCE_IMAGE:
-      return {...state, ui: {...state.ui, referenceImageVisible: action.visible}};
+    case ACTION_SET_UI_CONFIG:
+      return {...state, ui: action.values};
     case ACTION_SLIDE: {
       const solvedBefore = solved(state.board);
       const board = cloneBoard(state.board);

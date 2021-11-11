@@ -1,10 +1,11 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import {shuffle } from '../../core/scramble';
 import { initBoard } from '../../core/puzzle';
-import { slide, init, showNumbers, showReferenceImage } from '../actions';
-import reducer, {initState} from '../reducer';
+import { slide, init, setUiConfig } from '../actions';
+import reducer, {initState, UiState} from '../reducer';
 import texture2 from '../assets/texture2.jpg';
 import Stopwatch from './Stopwatch';
+import AppSettingsDialog from './AppSettingsDialog';
 import Puzzle from './Puzzle';
 import './App.css';
 
@@ -13,7 +14,8 @@ const initialState = initState(4, texture2);
 function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  
+  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
+
   const handleSlideRequest = (index: number) => {
     dispatch(slide(index));
   };
@@ -22,22 +24,20 @@ function App() {
     dispatch(init(shuffle(state.board)));
   };
 
-  const toggleTileNumbersVisibility = () => {
-    dispatch(showNumbers(!state.ui.numbersVisible));
-  };
+  const closeSettingsDialog = (config: UiState | undefined) => {
+    
+    setSettingsDialogOpen(false);
 
-  const toggleReferenceImageVisibility = () => {
-    dispatch(showReferenceImage(!state.ui.referenceImageVisible));
+    if (config) {
+      dispatch(setUiConfig(config));
+    }
   };
 
   return (
     <div className="App">
       <div className="AppMenu">
+        <button className="btn btn-default btn-settings" title="Settings" onClick={() => setSettingsDialogOpen(true)}>Settings</button>
         <button className="btn btn-primary" type="button" onClick={scramble}>Scramble</button>
-  
-        <label><input type="checkbox" value={1} checked={state.ui.numbersVisible} onChange={toggleTileNumbersVisibility} /> Show numbers</label>
-        <label><input type="checkbox" value={1} checked={state.ui.referenceImageVisible} onChange={toggleReferenceImageVisibility} /> Show reference image</label>
-
         <div>{state.moves} moves</div>
         <div><Stopwatch start={state.started} stop={state.finished} /></div>
       </div>
@@ -50,6 +50,7 @@ function App() {
           backgroundImage={state.ui.boardImage}
           onSlide={handleSlideRequest} />
       </div>
+      {settingsDialogOpen ? <AppSettingsDialog values={state.ui} onSubmit={closeSettingsDialog} /> : null}
     </div>
   );
 }
