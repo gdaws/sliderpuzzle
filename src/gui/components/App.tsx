@@ -10,8 +10,6 @@ import AppSettingsDialog from './AppSettingsDialog';
 import Puzzle from './Puzzle';
 import './App.css';
 
-const initialState = initState(4, pictures[0]);
-
 function getInitialState(): AppState {
 
   let state = initState(4, pictures[0]);

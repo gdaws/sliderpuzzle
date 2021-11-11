@@ -53,7 +53,7 @@ interface FooterProps {
   children: ReactNode;
 };
 
-export function Footer(props: BodyProps) {
+export function Footer(props: FooterProps) {
 
   return (
     <div className={styles.footer}>
@@ -61,4 +61,3 @@ export function Footer(props: BodyProps) {
     </div>
   );
 }
-
