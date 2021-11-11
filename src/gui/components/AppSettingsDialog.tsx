@@ -46,7 +46,7 @@ export default function AppSettingsDialog(props: Props) {
           </div>
           <div className="form-group">
             <label><input type="checkbox" name="numbersVisible" value={1} defaultChecked={props.values.numbersVisible} /> Show numbers</label><br/>
-            <label><input type="checkbox" name="referenceImageVisible" value={1} defaultChecked={props.values.referenceImageVisible} /> Show reference image</label>
+            <label><input type="checkbox" name="referenceImageVisible" value={1} defaultChecked={props.values.referenceImageVisible} /> Show reference picture</label>
           </div>
         </Dialog.Body>
         <Dialog.Footer>
