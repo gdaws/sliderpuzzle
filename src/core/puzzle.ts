@@ -38,7 +38,7 @@ export function solved(board: Board): boolean {
   const n = board.size * board.size;
   const v = board.values;
 
-  for(let i = 0; i < n; i++) {
+  for(let i = 0; i < n - 1; i++) {
     if (v[i] !== i + 1) {
       return false;
     }

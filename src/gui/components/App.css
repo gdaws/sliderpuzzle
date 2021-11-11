@@ -1,3 +1,26 @@
+.btn {
+  font-weight: bold;
+  padding: 1em;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.btn-default {
+  border: 0.15em solid #767676;
+  background-color: #fff;
+  color: #767676;
+}
+
+.btn-primary {
+  background-color: #0276FF;
+  color: #fff;
+}
+
+.btn:hover {
+  filter: brightness(1.25);
+}
+
 .App {
   text-align: center;
 }
@@ -7,7 +30,7 @@
   display: flex;
   top: 0em;
   z-index: 1;
-  padding: 1em;
+  padding: 0.5em;
   margin-bottom: 1em;
   justify-content: center;
   align-items: center;
@@ -38,16 +61,7 @@
   height: 30vmin;
 }
 
-.btn {
-  background-color: #0276FF;
-  font-weight: bold;
-  color: #fff;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 0.25em;
-  cursor: pointer;
-}
-
-.btn:hover {
-  filter: brightness(1.25);
+.AppSolvedPuzzle > div {
+  border-color: #88C425;
+  box-shadow: 0px 0px 1em 0em #88C425;
 }
