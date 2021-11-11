@@ -42,6 +42,10 @@ body {
   filter: brightness(1.25);
 }
 
+.form-group > label:first-child {
+  display:block;
+}
+
 .App {
   text-align: center;
 }

@@ -3,13 +3,13 @@ import {shuffle } from '../../core/scramble';
 import { initBoard } from '../../core/puzzle';
 import { slide, init, setUiConfig } from '../actions';
 import reducer, {initState, UiState} from '../reducer';
-import texture2 from '../assets/texture2.jpg';
+import { pictures } from '../assets';
 import Stopwatch from './Stopwatch';
 import AppSettingsDialog from './AppSettingsDialog';
 import Puzzle from './Puzzle';
 import './App.css';
 
-const initialState = initState(4, texture2);
+const initialState = initState(4, pictures[0]);
 
 function App() {
 

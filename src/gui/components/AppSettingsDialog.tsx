@@ -1,6 +1,8 @@
-import React, { ReactEventHandler, useState } from 'react';
+import React from 'react';
 import { UiState } from '../reducer';
+import { pictures } from '../assets';
 import * as Dialog from './Dialog';
+import styles from './AppSettingsDialog.module.css';
 
 interface Props {
   values: UiState;
@@ -18,7 +20,9 @@ export default function AppSettingsDialog(props: Props) {
     const formData = new FormData(event.target as HTMLFormElement);
     const numbersVisible = formData.get('numbersVisible') === '1';
     const referenceImageVisible = formData.get('referenceImageVisible') === '1';
-    props.onSubmit({...props.values, numbersVisible, referenceImageVisible});
+    const pictureIndex = pictures.indexOf(formData.get('boardImage')?.toString() || '');
+    const boardImage = pictureIndex !== -1 ? pictures[pictureIndex] : props.values.boardImage;
+    props.onSubmit({...props.values, numbersVisible, referenceImageVisible, boardImage});
   };
 
   return (
@@ -29,6 +33,10 @@ export default function AppSettingsDialog(props: Props) {
           <button type="button" className="btn btn-close" onClick={handleCancel} />
         </Dialog.Header>
         <Dialog.Body>
+          <div className="form-group">
+            <label>Background Picture</label>
+            {pictures.map(src => <label className={styles.boardImageItem}><input type="radio" name="boardImage" value={src} defaultChecked={props.values.boardImage == src} /> <img src={src} /> </label>)}
+          </div>
           <div className="form-group">
             <label><input type="checkbox" name="numbersVisible" value={1} defaultChecked={props.values.numbersVisible} /> Show numbers</label><br/>
             <label><input type="checkbox" name="referenceImageVisible" value={1} defaultChecked={props.values.referenceImageVisible} /> Show reference image</label>
