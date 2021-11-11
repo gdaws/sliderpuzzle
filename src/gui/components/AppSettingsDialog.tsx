@@ -34,13 +34,15 @@ export default function AppSettingsDialog(props: Props) {
         </Dialog.Header>
         <Dialog.Body>
           <div className="form-group">
-            <label>Background Picture</label>
-            {pictures.map((src, index) => (
-              <label key={index} className={styles.boardImageItem}>
-                <input type="radio" name="boardImage" value={src} defaultChecked={props.values.boardImage === src} /> 
-                <img src={src} alt="" /> 
-              </label>)
-            )}
+            <label className="form-group-label">Background Picture</label>
+            <div>
+              {pictures.map((src, index) => (
+                <label key={index} className={styles.boardImageItem}>
+                  <input type="radio" name="boardImage" value={src} defaultChecked={props.values.boardImage === src} /> 
+                  <img src={src} alt="" /> 
+                </label>)
+              )}
+            </div>
           </div>
           <div className="form-group">
             <label><input type="checkbox" name="numbersVisible" value={1} defaultChecked={props.values.numbersVisible} /> Show numbers</label><br/>

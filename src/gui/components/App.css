@@ -42,8 +42,13 @@ body {
   filter: brightness(1.25);
 }
 
-.form-group > label:first-child {
-  display:block;
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-group-label {
+  display: block;
+  margin-bottom: 0.5em;
 }
 
 .App {
