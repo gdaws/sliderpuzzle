@@ -1,8 +1,9 @@
 import { useReducer, useState } from 'react';
-import {shuffle } from '../../core/scramble';
+import { shuffle } from '../../core/scramble';
 import { initBoard } from '../../core/puzzle';
 import { slide, init, setUiConfig } from '../actions';
-import reducer, {initState, UiState} from '../reducer';
+import reducer, {initState, UiState, AppState } from '../reducer';
+import { storeUiConfig, loadUiConfig } from '../storage';
 import { pictures } from '../assets';
 import Stopwatch from './Stopwatch';
 import AppSettingsDialog from './AppSettingsDialog';
@@ -11,9 +12,22 @@ import './App.css';
 
 const initialState = initState(4, pictures[0]);
 
+function getInitialState(): AppState {
+
+  let state = initState(4, pictures[0]);
+
+  const ui = loadUiConfig();
+
+  if (ui) {
+    state = {...state, ui};
+  }
+
+  return state;
+}
+
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, getInitialState());
   const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
 
   const handleSlideRequest = (index: number) => {
@@ -30,6 +44,7 @@ function App() {
 
     if (config) {
       dispatch(setUiConfig(config));
+      storeUiConfig(config);
     }
   };
 

@@ -14,7 +14,7 @@ export interface UiState {
   boardImage: string;
 };
 
-interface State {
+export interface AppState {
   board: Board;
   frozenStats: boolean;
   moves: number;
@@ -23,7 +23,7 @@ interface State {
   ui: UiState;
 };
 
-export function initState(size: number, boardImage: string): State {
+export function initState(size: number, boardImage: string): AppState {
 
   const board = initBoard(size);
 
@@ -41,7 +41,7 @@ export function initState(size: number, boardImage: string): State {
   };
 };
 
-export default function reducer(state: State, action: Action) {
+export default function reducer(state: AppState, action: Action) {
 
   switch (action.type) {
     case ACTION_INIT:
