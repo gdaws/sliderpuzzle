@@ -12,12 +12,18 @@ import './App.css';
 
 function getInitialState(): AppState {
 
-  let state = initState(4, pictures[0]);
+  const DEFAULT_BOARD_SIZE = 4;
+
+  let state = initState(DEFAULT_BOARD_SIZE, pictures[0]);
 
   const ui = loadUiConfig();
 
   if (ui) {
     state = {...state, ui};
+
+    if (ui.boardSize !== DEFAULT_BOARD_SIZE) {
+      state.board = initBoard(ui.boardSize);
+    }
   }
 
   return state;
@@ -41,7 +47,15 @@ function App() {
     setSettingsDialogOpen(false);
 
     if (config) {
+
+      const boardSizeChanged = state.board.size !== config.boardSize;
+
       dispatch(setUiConfig(config));
+
+      if (boardSizeChanged) {
+        dispatch(init(initBoard(config.boardSize)));
+      }
+
       storeUiConfig(config);
     }
   };

@@ -12,7 +12,13 @@ export function storeUiConfig(values: UiState) {
 }
 
 function isUiState(value: {[key: string]: any}): value is UiState {
-  return typeof value.boardImage === 'string' && typeof value.numbersVisible === 'boolean' && typeof value.referenceImageVisible === 'boolean';
+  return typeof value.boardImage === 'string' && 
+    typeof value.numbersVisible === 'boolean' && 
+    typeof value.referenceImageVisible === 'boolean' && 
+    typeof value.boardSize === 'number' && 
+    value.boardSize > 2 && 
+    value.boardSize < 16
+  ;
 }
 
 export function loadUiConfig(): UiState | undefined {

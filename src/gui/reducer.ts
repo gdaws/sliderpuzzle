@@ -11,6 +11,7 @@ import {
 export interface UiState {
   numbersVisible: boolean;
   referenceImageVisible: boolean;
+  boardSize: number;
   boardImage: string;
 };
 
@@ -23,9 +24,9 @@ export interface AppState {
   ui: UiState;
 };
 
-export function initState(size: number, boardImage: string): AppState {
+export function initState(boardSize: number, boardImage: string): AppState {
 
-  const board = initBoard(size);
+  const board = initBoard(boardSize);
 
   return {
     board,
@@ -36,6 +37,7 @@ export function initState(size: number, boardImage: string): AppState {
     ui: {
       numbersVisible: true, 
       referenceImageVisible: false,
+      boardSize,
       boardImage
     }
   };

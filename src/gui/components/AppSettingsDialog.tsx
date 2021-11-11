@@ -22,7 +22,8 @@ export default function AppSettingsDialog(props: Props) {
     const referenceImageVisible = formData.get('referenceImageVisible') === '1';
     const pictureIndex = pictures.indexOf(formData.get('boardImage')?.toString() || '');
     const boardImage = pictureIndex !== -1 ? pictures[pictureIndex] : props.values.boardImage;
-    props.onSubmit({...props.values, numbersVisible, referenceImageVisible, boardImage});
+    const boardSize = parseInt(formData.get('boardSize')?.toString() || '4');
+    props.onSubmit({...props.values, numbersVisible, referenceImageVisible, boardImage, boardSize});
   };
 
   return (
@@ -33,6 +34,12 @@ export default function AppSettingsDialog(props: Props) {
           <button type="button" className="btn btn-close" onClick={handleCancel} />
         </Dialog.Header>
         <Dialog.Body>
+          <div className="form-group">
+            <label className="form-group-label">Number of Tiles</label>
+            <div>
+              <input type="number" min="3" max="16" required name="boardSize" defaultValue={props.values.boardSize} /><sup>2</sup>
+            </div>
+          </div>
           <div className="form-group">
             <label className="form-group-label">Background Picture</label>
             <div>
